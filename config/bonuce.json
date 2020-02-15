@@ -1,0 +1,38 @@
+{
+  "desc": "macd>0,过去20天跌幅较大(-5%)的蓝筹股,JNJ,MSFT,并且diff在-10位置(TBD)，MA20 1H突破? ",
+  "feeder": {
+    "type": "normal",
+    "name": "ib1h",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"macd",
+      "param":[]
+    },
+    {
+      "name":"period_perf",
+      "param":[]
+    },
+    {
+      "name":"dmirsi",
+      "param":[]
+    }
+  ],
+  "criteria":[
+    "ma20_sig>0",
+    "perf200<5"
+  ],
+  "columns":[
+    "symbol","px",
+    "macd","ma10%","ma20%","ma50%","ma10","ma20","ma50","volra20","vol20_sig","ma10_sig","ma20_sig","ma50_sig","slo10","slo20","slo50",
+    "perf50","perf200",
+    "rsi","dmi_sig"
+  ],
+  "sort":[
+    {"ma20_sig": "True"},
+    {"perf50": "True"}
+
+  ]
+}

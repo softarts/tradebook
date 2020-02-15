@@ -1,0 +1,51 @@
+{
+  "desc": "长短期新高",
+  "feeder": {
+    "type": "normal",
+    "name": "ib1d",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"macd",
+      "param":{}
+    },
+    {
+      "name":"nhnl",
+      "param":{
+          "pct":"0.99"
+       }
+    }
+  ],
+  "criteria_up":[
+    "ma10_sig>0",
+    "slo10>slo20",
+    "slo20>slo50"
+  ],
+  "criteria_nhnl":[
+    "ma10_sig>0",
+    "sth_sig<8"
+  ],
+  "criteria_ma":[
+    "ma10_sig>0",
+    "ma20_sig>0",
+    "ma50_sig>0"
+  ],
+  "criteria_sth":[
+    "px>0.98*sth"
+  ],
+  "criteria":[
+    "px>0.98*ma200",
+    "px<1.02*ma200"
+  ],
+  "columns":[
+    "symbol","px",
+    "macd","ma10%","ma20%","ma50%","ma10","ma20","ma50","ma200","volra20","vol20_sig","ma10_sig","ma20_sig","ma50_sig","slo10","slo20","slo50",
+    "sth","lth","stl","ltl","lth_sig","sth_sig","ltl_sig","stl_sig"
+  ],
+  "sort":[
+    {"ma10_sig":"True"},
+    {"ma50_sig":"True"}
+  ]
+}

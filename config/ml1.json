@@ -1,0 +1,36 @@
+{
+  "desc": "ML feature ",
+  "feeder": {
+    "type": "normal",
+    "name": "ib1d5y",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"multi_features",
+      "param":[]
+    }
+  ],
+  "criteria":[
+  ],
+  "columns":[
+  ],
+  "sort":[
+  ],
+  "model": [
+    {
+      "name": "regression1",
+      "ohlc_output": ["NFLX"],
+      "input_cols": [
+        "hlpct","ocpct","pct","rsi","Volume","Close"
+      ],
+      "sort":[
+        {"knn_reg": "True"}
+      ],
+      "forecast_out": 100,
+      "pred_len": 10
+
+    }
+  ]
+}

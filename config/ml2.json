@@ -1,0 +1,43 @@
+{
+  "desc": "ML feature ",
+  "feeder": {
+    "type": "normal",
+    "name": "ib1d5y",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"multi_features",
+      "param":{}
+    },
+    {
+      "name":"macd",
+      "param":{}
+    },
+    {
+      "name":"nhnl",
+      "param":{}
+    }
+  ],
+  "criteria":[
+  ],
+  "columns":[
+  ],
+  "sort":[
+  ],
+  "model": [
+    {
+      "name": "tf1",
+      "ohlc_output": ["WMT"],
+      "input_cols": [
+        "ma10","ma50","ocpct","pct","Volume","Close","sth_sig","stl_sig"
+      ],
+      "sort":[
+      ],
+      "forecast_out": 100,
+      "pred_len": 10
+
+    }
+  ]
+}

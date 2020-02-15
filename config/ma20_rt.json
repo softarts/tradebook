@@ -1,0 +1,15 @@
+{
+  "feeder": {
+    "type": "realtime",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"macd",
+      "param":[]
+    }
+  ],
+  "criteria":[
+  ]
+}

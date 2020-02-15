@@ -1,0 +1,32 @@
+{
+  "desc": "cluster ohlc",
+  "feeder": {
+    "type": "normal",
+    "name": "ib1h",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"period_perf",
+      "param":[]
+    }
+  ],
+  "criteria":[
+  ],
+  "columns":[
+  ],
+  "sort":[
+  ],
+  "model": [
+    {
+      "name": "cluster_ohlc",
+      "ohlc_output": [],
+      "input_cols": [
+        "Open","Close"
+      ],
+      "sort":[
+      ]
+    }
+  ]
+}

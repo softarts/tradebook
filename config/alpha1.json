@@ -1,0 +1,26 @@
+{
+  "desc": "SCTR最近2周排名上升",
+  "feeder": {
+    "type": "normal",
+    "name": "ib1d",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"sctr",
+      "param":{}
+    }
+  ],
+  "criteria":[
+    "sctr_rank>sctr_r5",
+    "sctr_r5>sctr_r10"
+  ],
+  "columns":[
+    "symbol","px",
+    "stok","sctr","sctr_rank","sctr_r5","sctr_r10","sctr_r30"
+  ],
+  "sort":[
+    {"sctr_rank":"False"}
+  ]
+}

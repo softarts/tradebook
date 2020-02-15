@@ -1,0 +1,28 @@
+{
+  "feeder": {
+    "type": "normal",
+    "name": "ib1d",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"macd",
+      "param":[]
+    },
+    {
+      "name":"period_perf",
+      "param":[]
+    }
+  ],
+  "criteria":[
+  ],
+  "columns":[
+    "symbol","px","macd","ma10%","ma10","ma20%","ma20","ma50%","ma50","stl","sth",
+    "ma10_sig","ma20_sig","dmi_sig","nhl_sig","moment",
+    "perf5","perf10","perf20"
+  ],
+  "sort":[
+    "ma10%","perf5"
+  ]
+}

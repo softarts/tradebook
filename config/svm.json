@@ -1,0 +1,40 @@
+{
+  "desc": "ML feature ",
+  "feeder": {
+    "type": "normal",
+    "name": "ib1d5y",
+    "start": "",
+    "end": ""
+  },
+  "algo":[
+    {
+      "name":"multi_features",
+      "param":{}
+    },
+    {
+      "name":"macd",
+      "param":{}
+    }
+  ],
+  "criteria":[
+  ],
+  "columns":[
+  ],
+  "sort":[
+  ],
+  "model": [
+    {
+      "name": "svm",
+      "ohlc_output": ["JNJ"],
+      "input_cols": [
+        "ma10","hlpct","ocpct","pct","Volume","Close","rsi"
+      ],
+      "sort":[
+        {"svmreg": "True"}
+      ],
+      "forecast_out": 100,
+      "pred_len": 10
+
+    }
+  ]
+}
