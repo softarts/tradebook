@@ -35,6 +35,7 @@ def run_algo(ohlc_dct,algo_dct):
     df_raw = {'symbol':[],'px':[]}
 
     for symbol,ohlc in ohlc_dct.items():
+        print("processing",symbol)
         if ohlc.empty:
             print(symbol, "ohlc is empty")
             continue
@@ -50,7 +51,13 @@ def run_algo(ohlc_dct,algo_dct):
         
         df_raw['symbol'].append(symbol)
         df_raw['px'].append(ohlc['Close'].iloc[-1])
-    return pd.DataFrame.from_dict(df_raw, orient='columns', dtype=None)
+    df = pd.DataFrame.from_dict(df_raw, orient='columns', dtype=None)
+    
+    # post algo
+    for an,algo_inx in algo_dct.items():
+        df = algo_inx.post_algo(df, ohlc_dct)
+    return df
+
 
 # scan and pick columns
 def run_scan(df,rule):

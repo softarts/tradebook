@@ -25,6 +25,7 @@ def MA(ohlc, len_lst):
 def MA(ohlc, len_lst):
     for window in len_lst:
         col = "ma%d" % window
+        #print(ohlc,type(ohlc))
         ohlc[col] = talib.EMA(ohlc['Close'].values, timeperiod = window)
     return ohlc
 
@@ -54,9 +55,9 @@ def RSI(ohlc, RSI_LEN):
 
         rs = up / down
         rsi[i] = 100. - 100. / (1. + rs)
-    return rsi
-    #ohlc['rsi'] = rsi
-    #return ohlc
+    #return rsi
+    ohlc['rsi'] = rsi
+    return ohlc
 
 def STOCHASTIC(ohlc, kperiod=5, dperiod=1, smoothing=3):
     # low_min = pd.rolling_min(lowp, kperiod)
