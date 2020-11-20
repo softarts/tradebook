@@ -4,9 +4,16 @@ import pandas
 import datetime
 #from collections import OrderedDict
 from ib_quote import IbQuote
-from tabulate import tabulate
+#from tabulate import tabulate
 import matplotlib.pyplot as plt
 
+g_fdrcfg = {
+    "type": "normal",
+    "name": "ib1d",
+    "start": "",
+    "end": "",
+    "path": "./cache/"
+}
 
 algo_inx_dct = {}
 g_ohlc_dct = {}
@@ -52,7 +59,7 @@ def __init_algo_inx(algo_list):
 
 
 def __print_df(df):
-    print(tabulate(df, tablefmt="pipe", headers="keys",showindex=False))
+    #print(tabulate(df, tablefmt="pipe", headers="keys",showindex=False))
     print('========================================================')
     print('= total', len(df), 'selected')
     print('========================================================')
@@ -69,12 +76,14 @@ def __strategy_init_ohlc():
     # use the first algo's feeder
     #fdr = g_algo_list[0].fdr
 
-    #fdrname = get_feeder_name()
+    if 'feeder' in g_rule:
+        g_fdrcfg = g_rule['feeder']
+    
 
     for index, row in df.iterrows():
         symbol = row['symbol']
         if symbol not in g_ohlc_dct:
-            ohlc = ohlc_file.OhlcFile.get_ohlc(row, g_fdr_name)
+            ohlc = ohlc_file.OhlcFile.get_ohlc(g_fdrcfg['path'],row, g_fdr_name)
             g_ohlc_dct[symbol] = ohlc
             if ohlc.empty:
                 print(symbol, "ohlc is empty")

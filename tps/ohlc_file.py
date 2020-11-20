@@ -84,9 +84,10 @@ class OhlcFile(object):
         print("save to", filename)
 
     @staticmethod
-    def get_ohlc(symdct, feeder_name='IB1D', delta=0):
+    def get_ohlc(fpath,symdct, feeder_name='IB1D', delta=0):
         symbol_fn = "%s_%s" %(symdct['symbol'], symdct['sectype'])
-        filename = config.CACHE_PATH + symbol_fn + "_ohlc_" + feeder_name + ".csv"
+        #filename = config.CACHE_PATH + symbol_fn + "_ohlc_" + feeder_name + ".csv"
+        filename = fpath + symbol_fn + "_ohlc_" + feeder_name + ".csv"
         print("*** load ohlc from %s ***" % filename)
         try:
             #ohlc = pandas.read_csv(filename, index_col=['Date'])
