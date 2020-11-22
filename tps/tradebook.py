@@ -1,12 +1,12 @@
 from tps import common, ohlc_file
 import pandas as pd
-import re
+import re, json
 
-def get_symbol_ohlc(symbol_df,fdrname='IB1D'):
+def get_symbol_ohlc(symbol_df,fdrname='IB1D',fpath='./cache/'):
     ohlc_dct = {}
     for index, row in symbol_df.iterrows():
         symbol = row['symbol']
-        ohlc = ohlc_file.OhlcFile.get_ohlc(row,fdrname)
+        ohlc = ohlc_file.OhlcFile.get_ohlc(fpath,row,fdrname)
         if ohlc.empty:
             print(symbol, "ohlc is empty")
             continue
@@ -17,7 +17,9 @@ def get_symbol_ohlc(symbol_df,fdrname='IB1D'):
 """
 [{'name': 'macd', 'param': {}}, {'name': 'nhnl', 'param': {'pct': '0.99'}}]   
 """
-def load_algo_pipeline(jscfg):
+def load_algo_pipeline(cfg):
+    jscfg=json.loads(cfg)
+    print(jscfg)
     algo_inx_dct = {}
     for element in jscfg['algo']:
         algo_file = element['name']
@@ -60,7 +62,8 @@ def run_algo(ohlc_dct,algo_dct):
 
 
 # scan and pick columns
-def run_scan(df,rule):
+def run_scan(df,cfg):
+    rule=json.loads(cfg)
     if 'criteria' in rule:
         criteria = rule['criteria']
     else:

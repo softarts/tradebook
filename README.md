@@ -1,17 +1,17 @@
-# tradebook
+# Tradebook
 notebook for trading
 
-# setup env
+# Setup env
 1. install jupyter notebook
 2. pip install -r requirements.txt
 
-# RUN
+# Run
 jupyter notebook
 
-## download
+## Download
 download.ipynb
 
-## trend
+## Trend
 algorithm based on moving average and new high
 
 ## SCTR
