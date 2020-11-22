@@ -68,13 +68,13 @@ class OhlcFile(object):
         #ohlc.index.name = 'Date'
         return ohlc
     
-    def save_ohlc(self, symdct, feeder_name):
+    def save_ohlc(self, fpath, symdct, feeder_name):
         symbol = "%s_%s" %(symdct['symbol'],symdct['sectype'])
 
         ohlc = self.to_dataframe()
-        cache_path = config.CACHE_PATH
+        # cache_path = config.CACHE_PATH
         # print cache_path
-        filename = cache_path + symbol + "_ohlc_" + feeder_name + ".csv"
+        filename = fpath + symbol + "_ohlc_" + feeder_name + ".csv"
         try:
             os.remove(filename)  # delete file firstly
         except:

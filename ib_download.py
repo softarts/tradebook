@@ -15,9 +15,9 @@ args = parser.parse_args()
 from pathlib import Path
 
 class IbDownload(object):
-    def __init__(self, symbol_df, typ='IB1D'):
-
-        Path("./cache").mkdir(parents=True, exist_ok=True)
+    def __init__(self, symbol_df, fpath='./cache/', typ='IB1D'):
+        Path(fpath).mkdir(parents=True, exist_ok=True)
+        self.fpath = fpath
         self.app = ib_core.IBApp("127.0.0.1", 7496, 101)
         self.symbol_df = symbol_df
         #self.app.set_callback(self.cb_histdata,self.cb_end)
@@ -29,9 +29,7 @@ class IbDownload(object):
                 'error': self.cb_error
              }
         )
-        self.ohf_dct = {}
-        #self.ohlc_file = ohlc_file.OhlcFile()
-        #self.symdct = {}
+        self.ohf_dct = {}        
         self.done_set = set()
         self.typ = typ
 
@@ -71,7 +69,7 @@ class IbDownload(object):
 
     def cb_end(self, symdct):
         ohf = self.ohf_dct[id(symdct)]
-        ohf.save_ohlc(symdct, self.typ)
+        ohf.save_ohlc(self.fpath,symdct, self.typ)
         self.done_set.add(id(symdct))
         if len(self.done_set) == len(self.symbol_df):
             print('%s download is done' % self.typ)
@@ -103,7 +101,7 @@ class IbDownload(object):
         self.app.get_his(symdct, self.typ)
 
 
-def download(fdrname='IB1D', fn='./symbol_ib.txt'):
+def download(fdrname='IB1D', fpath='./cache/',fn='./symbol_ib.txt'):
     #fdrname = args.feeder.upper()
     symbol_df = common.load_symbol_csv(fn)
     fdr_list = fdrname.split(',')
@@ -114,7 +112,7 @@ def download(fdrname='IB1D', fn='./symbol_ib.txt'):
         fdr_list = ["IB1D","IB1H","IB1D5Y"]
     """
     for fdr in fdr_list:
-        obj = IbDownload(symbol_df, fdr)
+        obj = IbDownload(symbol_df, fpath, fdr)
         obj.run()
 
     '''
